@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.rage.loan</groupId>
+	<artifactId>parent</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0</version>
+
+	<name>Loan and Sales Services</name>
+	<url>http://loan.rageco.info</url>
+
+	<properties>
+		<org.hazelcast.version>3.2.5</org.hazelcast.version>
+		<org.springframework.version>4.0.6.RELEASE</org.springframework.version>
+		<org.rage.reader.version>0.0.1</org.rage.reader.version>
+		<apache.log4j>2.0.2</apache.log4j>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<plugins>
+			<!-- JBoss 7 Plug in -->
+			<plugin>
+				<groupId>org.jboss.as.plugins</groupId>
+				<artifactId>jboss-as-maven-plugin</artifactId>
+				<version>7.6.Final</version>
+			</plugin>
+			
+			<!-- JAR Manifest Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Build-Operating-System>${os.name}</Build-Operating-System>
+							<Build-Operating-System-Architecture>${os.arch}</Build-Operating-System-Architecture>
+							<Build-Operating-System-Version>${os.version}</Build-Operating-System-Version>
+							<Built-By>${user.name}</Built-By>
+							<Build-Directory>${project.build.directory}</Build-Directory>
+							<Build-Time>${maven.build.timestamp}</Build-Time>
+							<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			
+			<!-- WAR Manifest Plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
+					<webResources>
+						<webResource>
+							<directory>${basedir}/src/main/webapp/WEB-INF</directory>
+							<includes>
+								<include>web.xml</include>
+							</includes>
+							<targetPath>WEB-INF</targetPath>
+							<filtering>true</filtering>
+						</webResource>
+					</webResources>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+						<manifestEntries>
+							<Build-Operating-System>${os.name}</Build-Operating-System>
+							<Build-Operating-System-Architecture>${os.arch}</Build-Operating-System-Architecture>
+							<Build-Operating-System-Version>${os.version}</Build-Operating-System-Version>
+							<Built-By>${user.name}</Built-By>
+							<Build-Directory>${project.build.directory}</Build-Directory>
+							<Build-Time>${maven.build.timestamp}</Build-Time>
+							<Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<organization>
+		<name>Rage</name>
+		<url>http://rageco.info</url>
+	</organization>
+</project>
