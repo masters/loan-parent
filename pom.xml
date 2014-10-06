@@ -8,7 +8,7 @@
 	<version>1.0.0</version>
 
 	<name>Loan and Sales Services</name>
-	<url>http://loan.rageco.info</url>
+	<url>http://loan.hmendoza.com</url>
 
 	<properties>
 		<org.hazelcast.version>3.2.5</org.hazelcast.version>
@@ -18,6 +18,11 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<organization>
+		<name>Rage</name>
+		<url>http://www.hmendoza.com</url>
+	</organization>
+
 	<build>
 		<plugins>
 			<!-- JBoss 7 Plug in -->
@@ -26,7 +31,7 @@
 				<artifactId>jboss-as-maven-plugin</artifactId>
 				<version>7.6.Final</version>
 			</plugin>
-			
+
 			<!-- JAR Manifest Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -50,7 +55,7 @@
 					</archive>
 				</configuration>
 			</plugin>
-			
+
 			<!-- WAR Manifest Plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -85,10 +90,28 @@
 				</configuration>
 			</plugin>
 		</plugins>
+
+		<extensions>
+			<extension>
+				<groupId>org.springframework.build</groupId>
+				<artifactId>aws-maven</artifactId>
+				<version>5.0.0.RELEASE</version>
+			</extension>
+		</extensions>
 	</build>
-	
-	<organization>
-		<name>Rage</name>
-		<url>http://rageco.info</url>
-	</organization>
+
+	<!-- Use S3 as maven repo - experimental -->
+	<distributionManagement>
+		<repository>
+			<id>aws-release</id>
+			<name>AWS Release Repository</name>
+			<url>s3://m2-repo/release</url>
+		</repository>
+
+		<snapshotRepository>
+			<id>aws-snapshot</id>
+			<name>AWS Snapshot Repository</name>
+			<url>s3://m2-repo/snapshot</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>
