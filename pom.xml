@@ -129,11 +129,13 @@
 			<name>AWS Release Repository</name>
 			<url>s3://m2-repo/release</url>
 		</repository>
-
-		<snapshotRepository>
-			<id>aws-snapshot</id>
-			<name>AWS Snapshot Repository</name>
-			<url>s3://m2-repo/snapshot</url>
-		</snapshotRepository>
 	</distributionManagement>
+	
+	<repositories>
+		<repository>
+			<id>releases</id>
+			<name>Releases S3 Rage</name>
+			<url>https://s3.amazonaws.com/m2-repo/release/</url>
+		</repository>
+	</repositories>
 </project>
