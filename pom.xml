@@ -16,6 +16,7 @@
 		<org.rage.reader.version>0.0.1</org.rage.reader.version>
 		<apache.log4j>2.0.2</apache.log4j>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>[1.6,)</java.version>
 	</properties>
 
 	<organization>
@@ -89,6 +90,27 @@
 					</archive>
 				</configuration>
 			</plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <version>1.0.1</version>
+            <executions>
+               <execution>
+                  <id>enforce-versions</id>
+                  <phase>validate</phase>
+                  <goals>
+                     <goal>enforce</goal>
+                  </goals>
+                  <configuration>
+                     <rules>
+                        <requireJavaVersion>
+                           <version>${java.version}</version>
+                        </requireJavaVersion>
+                     </rules>
+                  </configuration>
+               </execution>
+             </executions>
+         </plugin>
 		</plugins>
 
 		<extensions>
